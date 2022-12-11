@@ -25,6 +25,15 @@ for k, region in pairs(regions) do
 	region:SetVertexColor(1, 0.8, 0, 1)
 end
 
+-- Funktioniert nicht ohne /reload
+-- local bkgR, bkgG, bkgB, borderR, borderG, borderB, emblemR, emblemG, emblemB, emblemFilename = GetGuildLogoInfo()
+-- if bkgR and bkgG and bkgB then
+	-- local regions = { GuildMicroButton:GetRegions() }
+	-- for k, region in pairs(regions) do
+		-- region:SetVertexColor(bkgR, bkgG, bkgB, 1)
+	-- end
+-- end
+
 local regions = { GuildMicroButton:GetRegions() }
 for k, region in pairs(regions) do
 	region:SetVertexColor(0.2, 0.2, 1, 1)
@@ -37,7 +46,7 @@ end
 
 local regions = { CollectionsMicroButton:GetRegions() }
 for k, region in pairs(regions) do
-	region:SetVertexColor(1, 0.8, 0.4, 1)
+	region:SetVertexColor(1, 0.6, 0.2, 1)
 end
 
 local regions = { EJMicroButton:GetRegions() }
