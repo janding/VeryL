@@ -1,0 +1,7 @@
+## Interface: 100000
+## Title: VeryL
+## Notes: Default UI Modifications
+## Author: The VeryL Authors
+## Version: 0.0.1
+
+VeryL.lua
