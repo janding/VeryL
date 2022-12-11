@@ -6,7 +6,7 @@
 
 ## Installation
 
-1. Download the add-on from the link provided
+1. Download the add-on from https://github.com/janding/VeryL/releases/latest/
 2. Unzip the files into your World of Warcraft "Interface/AddOns" directory
 
 ## Customization
