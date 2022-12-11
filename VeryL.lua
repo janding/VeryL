@@ -25,19 +25,40 @@ for k, region in pairs(regions) do
 	region:SetVertexColor(1, 0.8, 0, 1)
 end
 
--- Funktioniert nicht ohne /reload
--- local bkgR, bkgG, bkgB, borderR, borderG, borderB, emblemR, emblemG, emblemB, emblemFilename = GetGuildLogoInfo()
--- if bkgR and bkgG and bkgB then
-	-- local regions = { GuildMicroButton:GetRegions() }
-	-- for k, region in pairs(regions) do
-		-- region:SetVertexColor(bkgR, bkgG, bkgB, 1)
-	-- end
--- end
-
 local regions = { GuildMicroButton:GetRegions() }
 for k, region in pairs(regions) do
-	region:SetVertexColor(0.2, 0.2, 1, 1)
+	region:SetVertexColor(1, 1, 1, 1)
 end
+
+local frame = CreateFrame("FRAME", "VeryLAddonFrame");
+frame:RegisterEvent("PLAYER_ALIVE");
+frame:RegisterEvent("GUILD_ROSTER_UPDATE");
+local function eventHandler(self, event, ...)
+	if event:find("PLAYER_ALIVE") then
+		if IsInGuild() then
+			GuildRoster();
+		end
+	elseif event:find("GUILD_ROSTER_UPDATE") then
+		local bkgR, bkgG, bkgB, borderR, borderG, borderB, emblemR, emblemG, emblemB, emblemFilename = GetGuildLogoInfo()
+		--print("bkgR " .. bkgR .. " bkgG " .. bkgG .. " bkgB " .. bkgB)
+		--print("borderR " .. borderR .. " borderG " .. borderG .. " borderB " .. borderB)
+		--print("emblemR " .. emblemR .. " emblemG " .. emblemG .. " emblemB " .. emblemB)
+		--print("emblemFilename " .. emblemFilename)
+		if bkgR and bkgG and bkgB then
+			local regions = { GuildMicroButton:GetRegions() }
+			local i = 0
+			for k, region in pairs(regions) do
+				if emblemFilename == 415005 then
+					region:SetVertexColor(borderR / 255.0, borderG / 255.0, borderB / 255.0, 1)
+				else
+					region:SetVertexColor(bkgR / 255.0, bkgG / 255.0, bkgB / 255.0, 1)
+					--region:SetVertexColor(emblemR / 255.0, emblemG / 255.0, emblemB / 255.0, 1)
+				end
+			end
+		end
+	end
+end
+frame:SetScript("OnEvent", eventHandler);
 
 local regions = { LFDMicroButton:GetRegions() }
 for k, region in pairs(regions) do
