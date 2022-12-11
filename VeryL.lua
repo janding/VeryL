@@ -31,15 +31,23 @@ for k, region in pairs(regions) do
 end
 
 local frame = CreateFrame("FRAME", "VeryLAddonFrame");
+frame:RegisterEvent("PLAYER_ENTERING_WORLD");
 frame:RegisterEvent("PLAYER_ALIVE");
 frame:RegisterEvent("GUILD_ROSTER_UPDATE");
 local function eventHandler(self, event, ...)
-	if event:find("PLAYER_ALIVE") then
+	if event:find("PLAYER_ENTERING_WORLD") then
+		for id=1,C_Minimap.GetNumTrackingTypes() do
+			local name, texture, active, category = C_Minimap.GetTrackingInfo(id);
+			if name == "Transmogrifizierer" then
+				C_Minimap.SetTracking(id, false);
+			end
+		end
+	elseif event:find("PLAYER_ALIVE") then
 		if IsInGuild() then
 			GuildRoster();
 		end
 	elseif event:find("GUILD_ROSTER_UPDATE") then
-		local bkgR, bkgG, bkgB, borderR, borderG, borderB, emblemR, emblemG, emblemB, emblemFilename = GetGuildLogoInfo()
+		local bkgR, bkgG, bkgB, borderR, borderG, borderB, emblemR, emblemG, emblemB, emblemFilename = GetGuildLogoInfo();
 		--print("bkgR " .. bkgR .. " bkgG " .. bkgG .. " bkgB " .. bkgB)
 		--print("borderR " .. borderR .. " borderG " .. borderG .. " borderB " .. borderB)
 		--print("emblemR " .. emblemR .. " emblemG " .. emblemG .. " emblemB " .. emblemB)
@@ -49,10 +57,10 @@ local function eventHandler(self, event, ...)
 			local i = 0
 			for k, region in pairs(regions) do
 				if emblemFilename == 415005 then
-					region:SetVertexColor(borderR / 255.0, borderG / 255.0, borderB / 255.0, 1)
+					region:SetVertexColor(borderR / 255.0, borderG / 255.0, borderB / 255.0, 1);
 				else
-					region:SetVertexColor(bkgR / 255.0, bkgG / 255.0, bkgB / 255.0, 1)
-					--region:SetVertexColor(emblemR / 255.0, emblemG / 255.0, emblemB / 255.0, 1)
+					region:SetVertexColor(bkgR / 255.0, bkgG / 255.0, bkgB / 255.0, 1);
+					--region:SetVertexColor(emblemR / 255.0, emblemG / 255.0, emblemB / 255.0, 1);
 				end
 			end
 		end
