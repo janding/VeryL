@@ -1,5 +1,3 @@
-MicroButtonAndBagsBar:SetScale(1.4)
-
 local regions = { CharacterMicroButton:GetRegions() }
 for k, region in pairs(regions) do
 	region:SetVertexColor(1, 0.6, 0.4, 1)
