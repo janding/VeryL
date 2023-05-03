@@ -2,6 +2,6 @@
 ## Title: VeryL
 ## Notes: Default UI Modifications
 ## Author: The VeryL Authors
-## Version: 0.0.4
+## Version: 0.0.5
 
 VeryL.lua
